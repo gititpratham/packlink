@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — Packlink Conveyor Systems</title>
+  <meta name="description" content="Explore Packlink's full range of precision conveyor modules — Plain Bends, Precision Guide Systems, Flexible Track and Conveyor Modules." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <style>
+    /* ---- PRODUCTS PAGE SPECIFIC ---- */
+    .prod-hero {
+      position: relative;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    .prod-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(13,13,13,.97) 45%, rgba(13,13,13,.55) 100%);
+      z-index: 1;
+    }
+
+    .prod-hero-img {
+      position: absolute;
+      inset: 0;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      opacity: .55;
+    }
+
+    .prod-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 6rem 0 5rem;
+    }
+
+    .prod-hero-content .tag { margin-bottom: 1.5rem; }
+
+    .prod-hero-content h1 {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 900;
+      line-height: .95;
+      letter-spacing: -.04em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .prod-hero-content h1 span { color: var(--red); }
+
+    .prod-hero-content p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.6);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ---- CATEGORY GRID ---- */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.25rem;
+    }
+
+    /* Plain Bends — spans 7 columns, image-dominant */
+    .cat-plain-bends {
+      grid-column: span 7;
+      min-height: 500px;
+      background: #111;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .cat-plain-bends-info {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 2;
+      background: var(--white);
+    }
+
+    .cat-plain-bends-info h3 {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      margin-bottom: .75rem;
+    }
+
+    .cat-plain-bends-info p {
+      font-size: .875rem;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .arc-tags {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .arc-tag {
+      font-size: .65rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      background: var(--red-pale);
+      color: var(--red);
+      border: 1px solid rgba(139,0,0,.15);
+      padding: .3rem .7rem;
+      border-radius: 4px;
+    }
+
+    .cat-plain-bends-img {
+      position: relative;
+      overflow: hidden;
+      background: #f5f5f5;
+    }
+
+    .cat-plain-bends-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform .6s;
+    }
+
+    .cat-plain-bends:hover .cat-plain-bends-img img {
+      transform: scale(1.06);
+    }
+
+    /* Precision Guide Module — spans 5 columns */
+    .cat-guide {
+      grid-column: span 5;
+      min-height: 500px;
+      background: var(--gray-light);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+    }
+
+    .cat-guide-img {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cat-guide-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform .6s;
+    }
+
+    .cat-guide:hover .cat-guide-img img { transform: scale(1.05); }
+
+    .cat-guide-body {
+      padding: 2.5rem;
+      background: var(--white);
+      border-top: 3px solid var(--red);
+    }
+
+    .cat-guide-body h3 {
+      font-size: 1.4rem;
+      font-weight: 900;
+      margin-bottom: .5rem;
+      letter-spacing: -.02em;
+    }
+
+    .cat-guide-body p {
+      font-size: .85rem;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .spec-mini {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: .5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .spec-mini-item {
+      background: var(--gray-light);
+      border-radius: 6px;
+      padding: .75rem 1rem;
+    }
+
+    .spec-mini-item .smi-label {
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      display: block;
+      margin-bottom: .2rem;
+    }
+
+    .spec-mini-item .smi-val {
+      font-size: .95rem;
+      font-weight: 900;
+      color: var(--black);
+      font-family: monospace;
+    }
+
+    /* Flexible Track — spans 6 columns */
+    .cat-flex-track {
+      grid-column: span 6;
+      min-height: 420px;
+      border-radius: 16px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    .cat-flex-track-body {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cat-flex-track-body h3 {
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: -.02em;
+      margin-bottom: .75rem;
+    }
+
+    .cat-flex-track-body p {
+      font-size: .85rem;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      margin-bottom: 2rem;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--black);
+    }
+
+    .feature-list li::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .cat-flex-track-img {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cat-flex-track-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(40%);
+      transition: filter .4s, transform .6s;
+    }
+
+    .cat-flex-track:hover .cat-flex-track-img img {
+      filter: grayscale(0%);
+      transform: scale(1.05);
+    }
+
+    /* Flexible Conveyor Modules — spans 6 columns */
+    .cat-flex-conv {
+      grid-column: span 6;
+      min-height: 420px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--black);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cat-flex-conv-img {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cat-flex-conv-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .7;
+      transition: opacity .4s, transform .6s;
+    }
+
+    .cat-flex-conv:hover .cat-flex-conv-img img {
+      opacity: .9;
+      transform: scale(1.04);
+    }
+
+    .cat-flex-conv-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.95) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .cat-flex-conv-body {
+      padding: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cat-flex-conv-body h3 {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: .75rem;
+    }
+
+    .conv-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .conv-stat .val {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--red);
+      letter-spacing: -.04em;
+      display: block;
+    }
+
+    .conv-stat .lbl {
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+    }
+
+    /* ---- TECH DARK BLOCK ---- */
+    .tech-block {
+      background: var(--dark);
+      border-radius: 16px;
+      padding: 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .tech-block h2 {
+      font-size: 2.75rem;
+      font-weight: 900;
+      letter-spacing: -.04em;
+      color: var(--white);
+      margin-bottom: 1.25rem;
+    }
+
+    .tech-block p {
+      color: rgba(255,255,255,.55);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    .tech-stats-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      border-left: 3px solid var(--red);
+      padding-left: 2rem;
+    }
+
+    .tech-stat .tv {
+      font-size: 2.25rem;
+      font-weight: 900;
+      color: var(--red);
+      letter-spacing: -.04em;
+      display: block;
+    }
+
+    .tech-stat .tl {
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+    }
+
+    .tech-block-visual {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      position: relative;
+    }
+
+    .tech-block-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .65;
+    }
+
+    .tech-block-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 1100px) {
+      .cat-plain-bends { grid-column: span 12; }
+      .cat-guide       { grid-column: span 12; min-height: 380px; flex-direction: row; }
+      .cat-guide-img   { flex: 1; min-height: 280px; }
+      .cat-guide-body  { flex: 1; border-top: none; border-left: 3px solid var(--red); }
+      .cat-flex-track  { grid-column: span 12; }
+      .cat-flex-conv   { grid-column: span 12; }
+      .tech-block      { grid-template-columns: 1fr; padding: 3rem; gap: 3rem; }
+    }
+
+    @media (max-width: 700px) {
+      .cat-plain-bends { grid-template-columns: 1fr; }
+      .cat-plain-bends-img { min-height: 260px; }
+      .cat-guide { flex-direction: column; }
+      .cat-guide-body { border-left: none; border-top: 3px solid var(--red); }
+      .cat-flex-track { grid-template-columns: 1fr; }
+      .cat-flex-track-img { min-height: 200px; }
+      .tech-block { padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+      </svg>
+      PACKLINK
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html" class="active">Products</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Get a Quote</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" style="color:var(--red);font-weight:800;">Get a Quote</a>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="prod-hero">
+      <img class="prod-hero-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEP5W33pcsEwEiMx79uewoU2hJUuTWI0UCOzjIXdJCltxRFhMi-teTT7UBIu6KzmsMy3Hz3sHp11x4mDCG9wdXrnS79BtE5Yvr9aZA7mfJpf4n__FkW1_7g_tULy7wH5BL47CEXSPe-WqdHlVLgqvRLr8jIZ_s-KZeRisFTP1I-TrB0I0Oz2FIv4X5q_Ehe-SGDdQt8qh1IbUax5GQWA97tvKy8uAdyBbMoc7xmCzx-E_VgmwUFnvYYHsuDk_IN-emSHDWLXt1Rm0" alt="Packlink Conveyor Systems" referrerpolicy="no-referrer" />
+      <div class="prod-hero-bg"></div>
+      <div class="container">
+        <div class="prod-hero-content">
+          <span class="tag">Engineering Excellence</span>
+          <h1>PRECISION<br/>CONVEYOR &amp;<br/><span>TRACK MODULES</span></h1>
+          <p>Achieve seamless industrial flow through modularity. Our track systems are engineered for surgical accuracy, reliability, and rapid integration into heavy machinery ecosystems.</p>
+          <div class="hero-btns">
+            <a href="contact.html" class="btn btn-primary">
+              Request a Quote
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="contact.html" class="btn btn-outline" style="color:var(--white);border-color:rgba(255,255,255,.25);">Download Catalog</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <section class="section-sm" style="background:var(--white);">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="value">0.05mm</span>
+            <span class="label">Tolerance Level</span>
+          </div>
+          <div class="stat-item">
+            <span class="value">45+</span>
+            <span class="label">Active Patents</span>
+          </div>
+          <div class="stat-item">
+            <span class="value">99.9%</span>
+            <span class="label">Uptime Guarantee</span>
+          </div>
+          <div class="stat-item">
+            <span class="value">24/7</span>
+            <span class="label">Peak Performance</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT CATEGORIES -->
+    <section class="section bg-light">
+      <div class="container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1rem;">
+          <div>
+            <span class="section-label">Product Categories</span>
+            <h2 style="font-size:2.5rem;font-weight:900;letter-spacing:-.04em;">Kinetic Mod Systems.</h2>
+          </div>
+          <span style="font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);">Ref: KINETIC-MOD-2024</span>
+        </div>
+
+        <div class="cat-grid">
+
+          <!-- ── PLAIN BENDS ── -->
+          <div class="cat-plain-bends">
+            <div class="cat-plain-bends-info">
+              <div>
+                <span class="section-label">Category 01</span>
+                <h3>Plain Bends</h3>
+                <p>Precision-engineered radial transitions designed for frictionless material handling. Available in 30°, 45°, 60°, and 90° arcs for seamless line integration.</p>
+                <div class="arc-tags">
+                  <span class="arc-tag">30° Arc</span>
+                  <span class="arc-tag">45° Arc</span>
+                  <span class="arc-tag">60° Arc</span>
+                  <span class="arc-tag">90° Arc</span>
+                </div>
+                <table class="spec-table" style="margin-bottom:0;">
+                  <tr><td>Material</td><td>Food-grade polymer + stainless</td></tr>
+                  <tr><td>Width</td><td>80mm / 85mm profiles</td></tr>
+                  <tr><td>Radius</td><td>R500 standard</td></tr>
+                  <tr><td>Belt width</td><td>148mm usable</td></tr>
+                </table>
+              </div>
+              <a href="contact.html" class="btn btn-primary" style="align-self:flex-start;margin-top:2rem;font-size:.8rem;">Request Technical Specs</a>
+            </div>
+            <div class="cat-plain-bends-img">
+              <!-- Uploaded plain bends product photo -->
+              <img src="Gemini_Generated_Image_3mashw3mashw3mas.png" alt="Plain Bend Conveyor Modules — 30°, 45°, 60°, 90°" />
+            </div>
+          </div>
+
+          <!-- ── PRECISION GUIDE MODULE ── -->
+          <div class="cat-guide">
+            <div class="cat-guide-img">
+              <!-- Uploaded precision guide module diagram -->
+              <img src="Gemini_Generated_Image_dooma8dooma8doom.png" alt="Precision Guide Module System Diagrams" />
+            </div>
+            <div class="cat-guide-body">
+              <span class="section-label">Category 02</span>
+              <h3>Precision Guide Module System</h3>
+              <p>High-accuracy guiding elements with defined bend radii and part codes for direct integration into automated lines.</p>
+              <div class="spec-mini">
+                <div class="spec-mini-item">
+                  <span class="smi-label">Part Code (90°)</span>
+                  <span class="smi-val">SMBH 90°R160</span>
+                </div>
+                <div class="spec-mini-item">
+                  <span class="smi-label">Track length</span>
+                  <span class="smi-val">0.411 m</span>
+                </div>
+                <div class="spec-mini-item">
+                  <span class="smi-label">Part Code (30°)</span>
+                  <span class="smi-val">SMBH 30°R160</span>
+                </div>
+                <div class="spec-mini-item">
+                  <span class="smi-label">Track length</span>
+                  <span class="smi-val">0.244 m</span>
+                </div>
+              </div>
+              <a href="contact.html" class="btn btn-dark" style="width:100%;justify-content:center;font-size:.8rem;">Get a Quote</a>
+            </div>
+          </div>
+
+          <!-- ── FLEXIBLE TRACK SYSTEM ── -->
+          <div class="cat-flex-track">
+            <div class="cat-flex-track-body">
+              <div>
+                <span class="section-label">Category 03</span>
+                <h3>Flexible Track System</h3>
+                <p>High-flex assemblies for complex spatial configurations with ultra-tight corners and zero velocity loss across 30°–90° bends.</p>
+                <ul class="feature-list">
+                  <li>Variable Radius from 150mm</li>
+                  <li>3D Assembly Compatibility</li>
+                  <li>Anti-Friction Lining</li>
+                  <li>5° Ultra-minimum radius option</li>
+                </ul>
+              </div>
+              <a href="contact.html" class="btn btn-outline" style="align-self:flex-start;font-size:.8rem;">Assembly Guide</a>
+            </div>
+            <div class="cat-flex-track-img">
+              <!-- Uploaded flexible track series specification image -->
+              <img src="Gemini_Generated_Image_j1l75yj1l75yj1l7.png" alt="Flexible Track System — Series Specification" />
+            </div>
+          </div>
+
+          <!-- ── FLEXIBLE CONVEYOR MODULES ── -->
+          <div class="cat-flex-conv">
+            <div class="cat-flex-conv-img">
+              <!-- Uploaded flexible conveyor module specification image -->
+              <img src="Gemini_Generated_Image_sti5uwsti5uwsti5.png" alt="Flexible Conveyor Module System Specification Guide" />
+            </div>
+            <div class="cat-flex-conv-overlay"></div>
+            <div class="cat-flex-conv-body">
+              <span class="section-label" style="color:#f87171;">Category 04</span>
+              <h3>Flexible Conveyor Modules</h3>
+              <div class="conv-stats">
+                <div class="conv-stat">
+                  <span class="val">210mm</span>
+                  <span class="lbl">Conveyor Width</span>
+                </div>
+                <div class="conv-stat">
+                  <span class="val">148mm</span>
+                  <span class="lbl">Usable Belt Width</span>
+                </div>
+              </div>
+              <a href="contact.html" class="btn btn-primary" style="font-size:.8rem;">Request Quote</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNICAL DARK BLOCK -->
+    <section class="section">
+      <div class="container">
+        <div class="tech-block">
+          <div>
+            <span class="section-label" style="color:#f87171;">Engineering Depth</span>
+            <h2>Ready for Any Complexity.</h2>
+            <p>Our engineering team provides comprehensive CAD support and custom module design. From rapid prototyping to full-scale line deployment, Packlink ensures your precision is never compromised.</p>
+            <div class="tech-stats-row">
+              <div class="tech-stat">
+                <span class="tv">0.05mm</span>
+                <span class="tl">Tolerance Level</span>
+              </div>
+              <div class="tech-stat">
+                <span class="tv">24/7</span>
+                <span class="tl">Peak Performance</span>
+              </div>
+            </div>
+          </div>
+          <div class="tech-block-visual">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDWb8Q5LWZy6IHLyNvCtqnIntvoOf5fmtL_2feL-cvktVUQLthZveoNC9EGzdlFM6KMWH72r1HnZ3xniinnQ9H92D39CaBJMUTQtY-vAA9EN7wooN7xSEi9N0bf9huGz2fAJw2YyPV912wT8d_HvwWhRZhsCYf4E3JwO73i3uLQuSc-LsK5tDj3njxuYMgQDQpdAuGwYiMSKVtDw5IPI2bjkHmuQXrip6f2b71yQs97uVQKQ4owyj44y0HxxjPrs_Vl1lnTg7B76U" alt="Complex Interlocking Gear and Conveyor Systems" referrerpolicy="no-referrer" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT CTA -->
+    <section class="section bg-light">
+      <div class="container">
+        <div class="cta-block">
+          <h2>Start Your System Design.</h2>
+          <p>Connect with our engineering team to discuss specifications, tolerances, and custom module requirements for your facility.</p>
+          <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+            <a href="contact.html" class="btn btn-primary">
+              Get a Quote
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://wa.me/917498348817" target="_blank" class="btn" style="background:#25D366;color:#fff;">WhatsApp Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>PACKLINK</h3>
+        <p>Engineering precision conveyor and material handling systems for food, pharma, and heavy industry. Built for zero-downtime environments.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+917498348817">+91 7498 348 817</a></li>
+          <li><a href="mailto:engineering@packlink.com">engineering@packlink.com</a></li>
+          <li><a href="https://wa.me/917498348817" target="_blank">WhatsApp Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Packlink. All rights reserved.</span>
+      <span>Founded by Digambar Raundal</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>

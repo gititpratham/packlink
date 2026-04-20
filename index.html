@@ -1,13 +1,804 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PackLink Solutions</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Packlink — Precision Conveyor & Material Handling Systems</title>
+  <meta name="description" content="Packlink engineers precision conveyor and material handling systems — modular, automated, and built for zero-downtime industrial environments." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <style>
+    /* ---- CONVEYOR BELT PARTNERS ---- */
+    .partners-conveyor-section {
+      background: var(--gray-light);
+      padding: 5rem 0 0;
+      overflow: hidden;
+    }
 
+    .partners-conveyor-section .container {
+      margin-bottom: 2.5rem;
+    }
+
+    .partners-header {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .partners-header h2 {
+      font-size: 1.75rem;
+      font-weight: 900;
+      letter-spacing: -.03em;
+    }
+
+    /* The full conveyor belt assembly */
+    .conveyor-assembly {
+      position: relative;
+      width: 100%;
+      height: 220px;
+    }
+
+    /* Left & right side guards */
+    .conveyor-guard {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 64px;
+      background: #888;
+      border-radius: 6px;
+      z-index: 20;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,.3);
+    }
+    .conveyor-guard.left  { left: 0; border-radius: 8px 0 0 8px; }
+    .conveyor-guard.right { right: 0; border-radius: 0 8px 8px 0; }
+
+    /* The belt track (background bar) */
+    .conveyor-track {
+      position: absolute;
+      bottom: 28px;
+      left: 0;
+      right: 0;
+      height: 28px;
+      background: #2a2a2a;
+      border-top: 3px solid #555;
+      border-bottom: 3px solid #111;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* Animated ribs on the belt */
+    .conveyor-track::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 28px,
+        rgba(255,255,255,.08) 28px,
+        rgba(255,255,255,.08) 32px
+      );
+      animation: belt-ribs 0.6s linear infinite;
+    }
+
+    @keyframes belt-ribs {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-32px); }
+    }
+
+    /* Roller wheels */
+    .conveyor-roller {
+      position: absolute;
+      bottom: 18px;
+      width: 48px;
+      height: 48px;
+      background: radial-gradient(circle at 35% 35%, #999, #444);
+      border-radius: 50%;
+      border: 3px solid #333;
+      z-index: 5;
+      box-shadow: 0 4px 8px rgba(0,0,0,.4);
+      animation: roller-spin 1.2s linear infinite;
+    }
+
+    .conveyor-roller::after {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,.15);
+    }
+
+    .conveyor-roller.left-roller  { left: 10px; }
+    .conveyor-roller.right-roller { right: 10px; }
+
+    @keyframes roller-spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* The scrolling boxes on the belt */
+    .conveyor-boxes-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 30px;
+      right: 0;
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    .conveyor-boxes-inner {
+      display: flex;
+      align-items: flex-end;
+      gap: 2.5rem;
+      height: 100%;
+      padding: 0 2rem;
+      width: max-content;
+      animation: conveyor-scroll 28s linear infinite;
+    }
+
+    @keyframes conveyor-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* Each brand box */
+    .brand-box {
+      width: 200px;
+      height: 140px;
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      flex-shrink: 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.1rem 1.1rem 1rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,.1), 0 2px 4px rgba(0,0,0,.06);
+      transition: border-color .2s, box-shadow .2s;
+      cursor: default;
+    }
+
+    .brand-box:hover {
+      border-color: var(--red);
+      box-shadow: 0 10px 32px rgba(139,0,0,.14);
+    }
+
+    /* Tape seal stripe down the middle */
+    .brand-box::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      background: rgba(0,0,0,.03);
+      z-index: 0;
+    }
+
+    .brand-box-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-box-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--red-pale);
+      border: 1px solid rgba(139,0,0,.12);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-box-icon svg {
+      width: 16px;
+      height: 16px;
+      color: var(--red);
+    }
+
+    .brand-batch {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .brand-batch-label {
+      font-size: .55rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      opacity: .5;
+    }
+
+    .brand-batch-id {
+      font-size: .7rem;
+      font-family: monospace;
+      font-weight: 800;
+      color: var(--black);
+    }
+
+    .brand-box-bottom {
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-box-logo {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      margin-bottom: .5rem;
+    }
+
+    .brand-box-logo img {
+      max-height: 32px;
+      max-width: 110px;
+      object-fit: contain;
+      filter: grayscale(100%);
+      transition: filter .3s;
+    }
+
+    .brand-box:hover .brand-box-logo img {
+      filter: grayscale(0%);
+    }
+
+    .brand-flow-tag {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .brand-flow-line {
+      width: 24px;
+      height: 3px;
+      background: var(--red);
+      border-radius: 2px;
+    }
+
+    .brand-flow-text {
+      font-size: .55rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    /* Shipping label sticker */
+    .brand-sticker {
+      position: absolute;
+      top: 44px;
+      right: 10px;
+      width: 28px;
+      height: 36px;
+      background: var(--gray-light);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 3px;
+      z-index: 2;
+    }
+
+    .brand-sticker span {
+      display: block;
+      height: 2px;
+      background: var(--border);
+      border-radius: 1px;
+    }
+
+    .brand-sticker span:last-child {
+      height: 6px;
+      background: rgba(0,0,0,.05);
+      margin-top: 2px;
+    }
+
+    /* Shadow under boxes */
+    .brand-shadow {
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 10px;
+      background: rgba(0,0,0,.12);
+      border-radius: 50%;
+      filter: blur(6px);
+    }
+
+    /* Side fade masks on the conveyor */
+    .conveyor-fade-left,
+    .conveyor-fade-right {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 120px;
+      z-index: 15;
+      pointer-events: none;
+    }
+
+    .conveyor-fade-left {
+      left: 0;
+      background: linear-gradient(to right, var(--gray-light) 30%, transparent);
+    }
+
+    .conveyor-fade-right {
+      right: 0;
+      background: linear-gradient(to left, var(--gray-light) 30%, transparent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+      </svg>
+      PACKLINK
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Get a Quote</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" style="color:var(--red);font-weight:800;">Get a Quote</a>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero blueprint-grid">
+      <div class="container">
+        <div class="hero-inner">
+          <div>
+            <span class="tag">Precision Material Handling</span>
+            <h1>PRECISION<br /><span>CONVEYANCE.</span></h1>
+            <p>Optimizing structural flow through automated modular systems designed to eliminate human error and atmospheric stress across food, pharma, and heavy industry.</p>
+            <div class="hero-btns">
+              <a href="products.html" class="btn btn-primary">
+                Explore Systems
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="contact.html" class="btn btn-outline">Download Catalog</a>
+            </div>
+          </div>
+          <div class="hero-img">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAQaQdlG6k0ZVMGW2LCPsqWhCd3H8yaJFVZjvKAcBslt2Go_L3v-O-4IEFGBWmxMrA4mz-fWOh-npKMisxCpNZn1i-993jB_mV247EisSvgjFsfLq30euf60KUELB7k_eO8u68C89K9w-rjSB5AM_xMqFy3sLIj_sd37bRUk7wCcGuPS8QoDBlJstnLcMd0_gb_M8OAskFwR4oAmdBUUpMaZEyo_Yrz9wmmgulbQJaX-m28bHoPUjNairsmaIgTDLO_QCxqN2Bi5bo" alt="High-Tech Conveyor Module" referrerpolicy="no-referrer" />
+            <div class="hero-badge">
+              <span class="big">0% Drift</span>
+              <span class="small">Modular Alignment Accuracy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="section-sm" style="background:var(--white);">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="value">99.9%</span>
+            <span class="label">Operational Reliability</span>
+          </div>
+          <div class="stat-item">
+            <span class="value">45+</span>
+            <span class="label">Handling Patents</span>
+          </div>
+          <div class="stat-item">
+            <span class="value">0.05mm</span>
+            <span class="label">Tolerance Level</span>
+          </div>
+          <div class="stat-item">
+            <span class="value">24/7</span>
+            <span class="label">Peak Performance</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- METHODOLOGY -->
+    <section class="section bg-light">
+      <div class="container">
+        <span class="section-label">Our Methodology</span>
+        <div class="methodology-grid">
+          <div class="method-card">
+            <span class="method-num">01</span>
+            <h3>The Challenge</h3>
+            <p>Identifying mechanical stress points and bottlenecks in existing material handling workflows that lead to product degradation and line stoppages.</p>
+          </div>
+          <div class="method-card active">
+            <span class="method-num">02</span>
+            <h3>The Solution</h3>
+            <p>Engineering bespoke modular conveyor links and structural packaging systems that mitigate human error, environmental variables, and velocity loss.</p>
+          </div>
+          <div class="method-card dark-top">
+            <span class="method-num">03</span>
+            <h3>The Outcome</h3>
+            <p>A seamless, high-reliability structural flow that preserves material integrity while maximizing throughput efficiency and uptime.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT BENTO GRID -->
+    <section class="section">
+      <div class="container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1rem;">
+          <div>
+            <span class="section-label">Material Handling Ecosystem</span>
+            <h2 style="font-size:2.75rem;font-weight:900;letter-spacing:-.04em;">Specialized Systems.</h2>
+          </div>
+          <a href="products.html" class="btn btn-dark" style="font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;padding:.65rem 1.5rem;">Full Inventory</a>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Large -->
+          <div class="bento-card bento-large">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQA3vYN5V__wEC6WhPQ6B0kmCsM6fFr3yER4Pvhbwu9pRl2RQTOb4Sud24BJ8FU96Rwmh0aSVkkFDtZNQ1A73P-T6D2jo7QmdxEQtxC8L3YWn0NvMuVyQEpzXKOVeQeqzlitrALwMEvIo20iD3CN5ovOsxjtFN7Uq8QawLmlGAjbw0cK6Y1qBeGMiINLgXe-X_aLMjpEA_lt8R6b0upzGlmU0LqIiZVEcJOJI8n5zcpLkBHx0msAAx6BAmYFX2jaWmdCUznsiD0dfP" alt="Vacuum Systems" referrerpolicy="no-referrer" />
+            <div class="bento-overlay"></div>
+            <div class="bento-content">
+              <span class="tag-sm">Series V-500</span>
+              <h4>Precision Vacuum Systems</h4>
+              <p>High-speed material stabilization for ultra-lightweight and delicate structural components with zero contact slip.</p>
+              <a href="products.html" class="btn btn-primary" style="font-size:.8rem;padding:.5rem 1rem;">Technical Specs</a>
+            </div>
+          </div>
+
+          <!-- Medium -->
+          <div class="bento-card bento-medium">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8nxYTeQbmq8zt9viqsXrgMS0_fdDi0qrJc5zxXKyXRheF3-V1rE1sFiR7zMO-b_AzVY30g6Xq1SIJ6kyPdxszSIa4pZ8rADYT2XTpUiu4p71DTfD3Jll2PABhQcJIzRRbOTVcby-EppnTikFoKCuzdoAJXDaSoQYVux_QIJlOgd2jaBWGCpEz7vf3sRm1p4BQu_l-VYb4IB5RiTUduLzP5nVwcA2G5JsFZRcUxg16_JhsQtApmrV6QVPJPxwj_303ISeKiYE-do5Y" alt="Magnetic Conveyance" referrerpolicy="no-referrer" />
+            <div class="bento-overlay"></div>
+            <div class="bento-content">
+              <h4>Magnetic Slide Conveyance</h4>
+            </div>
+          </div>
+
+          <!-- Small image -->
+          <div class="bento-card bento-small">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeaXnUMRnT1nODmPS3GwtIJRy331krPPAJmSeqxq1NWIKcKH8OHZn7CXym8MHbtbGYMip4aumysd327Zkelz6406cTmLTAXeKXbffcSMyYrobPS1fp5m1T-2YoxpURMsBRVqVlTYFDrc9YgTWJGlaNQe2MniK4FRMWTOQOsjhz6VugyDEnU0g9JZOw0ubCpXAvxwJKD8I5NjhDVvKA7YWTGHymeaU4f-igjbNt7gN1MEb7fQTxGH7mdRV7mGKzw_e1CX6G9ny0t7e5" alt="Sanitary Washdown" referrerpolicy="no-referrer" />
+            <div class="bento-overlay"></div>
+            <div class="bento-content">
+              <h4 style="font-size:1rem;">Sanitary Washdown</h4>
+            </div>
+          </div>
+
+          <!-- Small icon -->
+          <div class="bento-icon-card bento-small">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>
+            </svg>
+            <h4>Automated Modular Links</h4>
+            <p>Scalable transit paths for zero-error facility integration.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INDUSTRIAL CONVEYOR BELT PARTNERS ===== -->
+    <section class="partners-conveyor-section">
+      <div class="container">
+        <div class="partners-header">
+          <span class="section-label">Operational Partners</span>
+          <h2>Powering high-volume sorting &amp; transport environments.</h2>
+        </div>
+      </div>
+
+      <!-- Conveyor Assembly -->
+      <div class="conveyor-assembly">
+
+        <!-- Fade masks -->
+        <div class="conveyor-fade-left"></div>
+        <div class="conveyor-fade-right"></div>
+
+        <!-- Scrolling boxes -->
+        <div class="conveyor-boxes-track">
+          <div class="conveyor-boxes-inner">
+
+            <!-- ── Duplicate set × 2 for seamless loop ── -->
+            <!-- SET 1 -->
+            <div class="brand-box" style="position:relative;">
+              <div class="brand-box-top">
+                <div class="brand-box-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                </div>
+                <div class="brand-batch"><span class="brand-batch-label">Batch ID</span><span class="brand-batch-id">PK-1001</span></div>
+              </div>
+              <div class="brand-box-bottom">
+                <div class="brand-box-logo"><img src="https://logo.clearbit.com/unilever.com" alt="Unilever" /></div>
+                <div class="brand-flow-tag"><div class="brand-flow-line"></div><span class="brand-flow-text">Structural Flow</span></div>
+              </div>
+              <div class="brand-sticker"><span></span><span></span><span></span></div>
+              <div class="brand-shadow"></div>
+            </div>
+
+            <div class="brand-box" style="position:relative;">
+              <div class="brand-box-top">
+                <div class="brand-box-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                </div>
+                <div class="brand-batch"><span class="brand-batch-label">Batch ID</span><span class="brand-batch-id">PK-1002</span></div>
+              </div>
+              <div class="brand-box-bottom">
+                <div class="brand-box-logo"><img src="https://logo.clearbit.com/nestle.com" alt="Nestlé" /></div>
+                <div class="brand-flow-tag"><div class="brand-flow-line"></div><span class="brand-flow-text">Structural Flow</span></div>
+              </div>
+              <div class="brand-sticker"><span></span><span></span><span></span></div>
+              <div class="brand-shadow"></div>
+            </div>
+
+            <div class="brand-box" style="position:relative;">
+              <div class="brand-box-top">
+                <div class="brand-box-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                </div>
+                <div class="brand-batch"><span class="brand-batch-label">Batch ID</span><span class="brand-batch-id">PK-1003</span></div>
+              </div>
+              <div class="brand-box-bottom">
+                <div class="brand-box-logo"><img src="https://logo.clearbit.com/dabur.com" alt="Dabur" /></div>
+                <div class="brand-flow-tag"><div class="brand-flow-line"></div><span class="brand-flow-text">Structural Flow</span></div>
+              </div>
+              <div class="brand-sticker"><span></span><span></span><span></span></div>
+              <div class="brand-shadow"></div>
+            </div>
+
+            <div class="brand-box" style="position:relative;">
+              <div class="brand-box-top">
+                <div class="brand-box-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                </div>
+                <div class="brand-batch"><span class="brand-batch-label">Batch ID</span><span class="brand-batch-id">PK-1004</span></div>
+              </div>
+              <div class="brand-box-bottom">
+                <div class="brand-box-logo"><img src="https://logo.clearbit.com/itcportal.com" alt="ITC" /></div>
+                <div class="brand-flow-tag"><div class="brand-flow-line"></div><span class="brand-flow-text">Structural Flow</span></div>
+              </div>
+              <div class="brand-sticker"><span></span><span></span><span></span></div>
+              <div class="brand-shadow"></div>
+            </div>
+
+            <div class="brand-box" style="position:relative;">
+              <div class="brand-box-top">
+                <div class="brand-box-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                </div>
+                <div class="brand-batch"><span class="brand-batch-label">Batch ID</span><span class="brand-batch-id">PK-1005</span></div>
+              </div>
+              <div class="brand-box-bottom">
+                <div class="brand-box-logo"><img src="https://logo.clearbit.com/marico.com" alt="Marico" /></div>
+                <div class="brand-flow-tag"><div class="brand-flow-line"></div><span class="brand-flow-text">Structural Flow</span></div>
+              </div>
+              <div class="brand-sticker"><span></span><span></span><span></span></div>
+              <div class="brand-shadow"></div>
+            </div>
+
+            <div class="brand-box" style="position:relative;">
+              <div class="brand-box-top">
+                <div class="brand-box-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                </div>
+                <div class="brand-batch"><span class="brand-batch-label">Batch ID</span><span class="brand-batch-id">PK-1006</span></div>
+              </div>
+              <div class="brand-box-bottom">
+                <div class="brand-box-logo"><img src="https://logo.clearbit.com/godrejcp.com" alt="Godrej" /></div>
+                <div class="brand-flow-tag"><div class="brand-flow-line"></div><span class="brand-flow-text">Structural Flow</span></div>
+              </div>
+              <div class="brand-sticker"><span></span><span></span><span></span></div>
+              <div class="brand-shadow"></div>
+            </div>
+
+            <!-- SET 2 (duplicate for seamless loop) -->
+            <div class="brand-box" style="position:relative;">
+              <div class="brand-box-top">
+                <div class="brand-box-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+                <div class="brand-batch"><span class="brand-batch-label">Batch ID</span><span class="brand-batch-id">PK-1001</span></div>
+              </div>
+              <div class="brand-box-bottom">
+                <div class="brand-box-logo"><img src="https://logo.clearbit.com/unilever.com" alt="Unilever" /></div>
+                <div class="brand-flow-tag"><div class="brand-flow-line"></div><span class="brand-flow-text">Structural Flow</span></div>
+              </div>
+              <div class="brand-sticker"><span></span><span></span><span></span></div>
+              <div class="brand-shadow"></div>
+            </div>
+            <div class="brand-box" style="position:relative;">
+              <div class="brand-box-top">
+                <div class="brand-box-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+                <div class="brand-batch"><span class="brand-batch-label">Batch ID</span><span class="brand-batch-id">PK-1002</span></div>
+              </div>
+              <div class="brand-box-bottom">
+                <div class="brand-box-logo"><img src="https://logo.clearbit.com/nestle.com" alt="Nestlé" /></div>
+                <div class="brand-flow-tag"><div class="brand-flow-line"></div><span class="brand-flow-text">Structural Flow</span></div>
+              </div>
+              <div class="brand-sticker"><span></span><span></span><span></span></div>
+              <div class="brand-shadow"></div>
+            </div>
+            <div class="brand-box" style="position:relative;">
+              <div class="brand-box-top">
+                <div class="brand-box-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+                <div class="brand-batch"><span class="brand-batch-label">Batch ID</span><span class="brand-batch-id">PK-1003</span></div>
+              </div>
+              <div class="brand-box-bottom">
+                <div class="brand-box-logo"><img src="https://logo.clearbit.com/dabur.com" alt="Dabur" /></div>
+                <div class="brand-flow-tag"><div class="brand-flow-line"></div><span class="brand-flow-text">Structural Flow</span></div>
+              </div>
+              <div class="brand-sticker"><span></span><span></span><span></span></div>
+              <div class="brand-shadow"></div>
+            </div>
+            <div class="brand-box" style="position:relative;">
+              <div class="brand-box-top">
+                <div class="brand-box-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+                <div class="brand-batch"><span class="brand-batch-label">Batch ID</span><span class="brand-batch-id">PK-1004</span></div>
+              </div>
+              <div class="brand-box-bottom">
+                <div class="brand-box-logo"><img src="https://logo.clearbit.com/itcportal.com" alt="ITC" /></div>
+                <div class="brand-flow-tag"><div class="brand-flow-line"></div><span class="brand-flow-text">Structural Flow</span></div>
+              </div>
+              <div class="brand-sticker"><span></span><span></span><span></span></div>
+              <div class="brand-shadow"></div>
+            </div>
+            <div class="brand-box" style="position:relative;">
+              <div class="brand-box-top">
+                <div class="brand-box-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+                <div class="brand-batch"><span class="brand-batch-label">Batch ID</span><span class="brand-batch-id">PK-1005</span></div>
+              </div>
+              <div class="brand-box-bottom">
+                <div class="brand-box-logo"><img src="https://logo.clearbit.com/marico.com" alt="Marico" /></div>
+                <div class="brand-flow-tag"><div class="brand-flow-line"></div><span class="brand-flow-text">Structural Flow</span></div>
+              </div>
+              <div class="brand-sticker"><span></span><span></span><span></span></div>
+              <div class="brand-shadow"></div>
+            </div>
+            <div class="brand-box" style="position:relative;">
+              <div class="brand-box-top">
+                <div class="brand-box-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+                <div class="brand-batch"><span class="brand-batch-label">Batch ID</span><span class="brand-batch-id">PK-1006</span></div>
+              </div>
+              <div class="brand-box-bottom">
+                <div class="brand-box-logo"><img src="https://logo.clearbit.com/godrejcp.com" alt="Godrej" /></div>
+                <div class="brand-flow-tag"><div class="brand-flow-line"></div><span class="brand-flow-text">Structural Flow</span></div>
+              </div>
+              <div class="brand-sticker"><span></span><span></span><span></span></div>
+              <div class="brand-shadow"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Belt track -->
+        <div class="conveyor-track"></div>
+
+        <!-- Rollers -->
+        <div class="conveyor-roller left-roller"></div>
+        <div class="conveyor-roller right-roller"></div>
+
+        <!-- Side guards -->
+        <div class="conveyor-guard left"></div>
+        <div class="conveyor-guard right"></div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT BLOCK -->
+    <section class="section">
+      <div class="container">
+        <div class="contact-block">
+          <div class="contact-sidebar">
+            <h2>Initiate<br />System Flow.</h2>
+            <p>Connect with our conveyance leads to discuss system architecture, module specifications, and requirements.</p>
+            <div class="contact-info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>490/34, Stone Gold Ind, Chibhad kachchh, Dungra, Valsad, Pardi, Gujarat, India 396193</span>
+            </div>
+            <div class="contact-info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>engineering@packlink.com</span>
+            </div>
+            <div class="contact-info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.61 5a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.91a16 16 0 0 0 6 6l.54-.54a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 18.92z"/></svg>
+              <span>+91 7498 348 817</span>
+            </div>
+            <div class="contact-deco"></div>
+          </div>
+          <div class="contact-form-area">
+            <form onsubmit="submitForm(event)">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input type="text" placeholder="John Doe" required />
+                </div>
+                <div class="form-group">
+                  <label>Corporate Email</label>
+                  <input type="email" placeholder="john@company.com" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>System Requirement</label>
+                <select>
+                  <option>Vacuum Conveyance</option>
+                  <option>Magnetic Systems</option>
+                  <option>Sanitary Food/Pharma Systems</option>
+                  <option>Modular Sorting Architecture</option>
+                  <option>Custom Solution</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Flow Details</label>
+                <textarea placeholder="Describe your material handling requirements..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;padding:1rem;">
+                Submit System Request
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>PACKLINK</h3>
+        <p>Engineering precision conveyor and material handling systems for food, pharma, and heavy industry. Built for zero-downtime environments.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+917498348817">+91 7498 348 817</a></li>
+          <li><a href="mailto:engineering@packlink.com">engineering@packlink.com</a></li>
+          <li><a href="https://wa.me/917498348817" target="_blank">WhatsApp Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Packlink. All rights reserved.</span>
+      <span>Founded by Digambar Raundal</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+    function submitForm(e) {
+      e.preventDefault();
+      alert('Thank you! Your inquiry has been submitted. We will contact you shortly.');
+      e.target.reset();
+    }
+  </script>
+
+</body>
+</html>
