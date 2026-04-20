@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Packlink</title>
+  <meta name="description" content="Learn about Packlink — founded by Director Digambar Raundal with a vision to build precision material handling systems for industry." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+      </svg>
+      PACKLINK
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Get a Quote</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" style="color:var(--red);font-weight:800;">Get a Quote</a>
+  </div>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero blueprint-grid">
+      <div class="container">
+        <span class="section-label">Company</span>
+        <h1>ABOUT US.</h1>
+        <p>Engineering the future of material handling with precision, reliability, and innovation — guided by dedication and a forward-looking approach.</p>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="section-sm">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="value">PET</span>
+            <span class="label">Advanced Material Handling</span>
+          </div>
+          <div class="stat-item">
+            <span class="value">Bio-M</span>
+            <span class="label">Sustainable Solutions</span>
+          </div>
+          <div class="stat-item">
+            <span class="value">99.9%</span>
+            <span class="label">Operational Reliability</span>
+          </div>
+          <div class="stat-item">
+            <span class="value">45</span>
+            <span class="label">Handling Patents</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPANY STORY -->
+    <section class="section">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;">
+          <div>
+            <span class="section-label">Our Story</span>
+            <h2 style="font-size:2.75rem;font-weight:900;letter-spacing:-.04em;line-height:1;margin-bottom:1.5rem;">Founded on<br /><span style="color:var(--red);">Vision &amp; Drive.</span></h2>
+            <p style="color:var(--gray);font-size:1.05rem;line-height:1.8;margin-bottom:1.25rem;">
+              Our company was founded by Director Digambar Raundal, whose vision, determination, and strong support from family laid the foundation for what is steadily growing into a dynamic and ambitious venture.
+            </p>
+            <p style="color:var(--gray);font-size:1.05rem;line-height:1.8;margin-bottom:1.25rem;">
+              With a focus on progress and innovation, he continues to lead the company toward bigger opportunities and long-term success in the material handling and precision conveyor industry.
+            </p>
+            <p style="color:var(--gray);font-size:1.05rem;line-height:1.8;margin-bottom:2rem;">
+              Supporting this journey is Intern Kunal Raundal, who contributes to day-to-day operations and assists across various tasks. His involvement reflects the collaborative spirit of the team.
+            </p>
+            <blockquote style="border-left:4px solid var(--red);padding:.75rem 1.5rem;background:var(--red-pale);border-radius:0 8px 8px 0;">
+              <p style="color:var(--red);font-weight:700;font-size:1.05rem;line-height:1.6;margin:0;">"Together, we are committed to building something meaningful, guided by dedication, teamwork, and a forward-looking approach."</p>
+            </blockquote>
+          </div>
+          <div>
+            <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=600&q=80" alt="Industrial facility" style="width:100%;border-radius:16px;box-shadow:0 24px 64px rgba(0,0,0,.12);object-fit:cover;aspect-ratio:4/3;" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION & VALUES -->
+    <section class="section bg-light">
+      <div class="container">
+        <span class="section-label">What We Stand For</span>
+        <h2 style="font-size:2.25rem;font-weight:900;letter-spacing:-.04em;margin-bottom:.5rem;">Our Core Values.</h2>
+        <div class="divider"></div>
+        <div class="values-grid">
+          <div class="value-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+            </svg>
+            <h3>Precision First</h3>
+            <p>Every system we engineer is held to the strictest tolerances. 0.05mm accuracy is not a target — it's our baseline.</p>
+          </div>
+          <div class="value-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <h3>Reliability</h3>
+            <p>Our systems run in zero-downtime environments. We build for 24/7 operation and back it with 99.9% uptime track records.</p>
+          </div>
+          <div class="value-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+            </svg>
+            <h3>Innovation</h3>
+            <p>With 45+ patents in material handling, our R&D continuously pushes the boundary of what modular conveyance can achieve.</p>
+          </div>
+          <div class="value-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <h3>Collaboration</h3>
+            <p>We work closely with each client's engineering team to tailor systems that fit exact facility requirements and scale smoothly.</p>
+          </div>
+          <div class="value-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            </svg>
+            <h3>Modularity</h3>
+            <p>Our systems are designed to scale, adapt, and upgrade — so your investment grows with your facility and output requirements.</p>
+          </div>
+          <div class="value-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2.27 21.7s9.87-3.5 12.73-6.36a4.5 4.5 0 0 0-6.36-6.37C5.77 11.84 2.27 21.7 2.27 21.7zM15.42 15.42l6.37-6.37"/><path d="M17.44 2.56 21.5 6.62M22 2l-4.12 4.12"/>
+            </svg>
+            <h3>Sustainability</h3>
+            <p>Bio-material compatible systems and energy-efficient drive solutions that meet the demands of modern green manufacturing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="section">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
+          <div>
+            <span class="section-label">Leadership</span>
+            <h2 style="font-size:2.25rem;font-weight:900;letter-spacing:-.04em;margin-bottom:.5rem;">Meet the Team.</h2>
+            <div class="divider"></div>
+            <div class="team-grid">
+              <div class="team-card">
+                <div class="team-card-img">
+                  <div class="team-initials">DR</div>
+                </div>
+                <div class="team-card-body">
+                  <h3>Digambar Raundal</h3>
+                  <span class="role">Director &amp; Founder</span>
+                  <p>Visionary leader whose determination and family support built Packlink from the ground up. Drives the company's strategic direction, innovation roadmap, and client relationships.</p>
+                </div>
+              </div>
+              <div class="team-card">
+                <div class="team-card-img" style="background:linear-gradient(135deg,#1a1a1a 0%,#3d3d3d 100%);">
+                  <div class="team-initials">KR</div>
+                </div>
+                <div class="team-card-body">
+                  <h3>Kunal Raundal</h3>
+                  <span class="role">Operations Intern</span>
+                  <p>Contributes to day-to-day operations across various tasks. His involvement reflects the collaborative, hands-on spirit that defines the Packlink team's work ethic.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TIMELINE -->
+          <div>
+            <span class="section-label">Our Journey</span>
+            <h2 style="font-size:2.25rem;font-weight:900;letter-spacing:-.04em;margin-bottom:.5rem;">Growing Forward.</h2>
+            <div class="divider"></div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <h4>Company Founded</h4>
+                <p>Packlink established by Director Digambar Raundal with a clear vision for precision material handling in industrial sectors.</p>
+              </div>
+              <div class="timeline-item">
+                <h4>First Conveyor Line Deployed</h4>
+                <p>Successfully delivered the first modular conveyor installation for a food-grade packaging facility in Gujarat.</p>
+              </div>
+              <div class="timeline-item">
+                <h4>Patent Portfolio Expansion</h4>
+                <p>Grew to 45+ registered handling patents covering vacuum conveyance, magnetic slide systems, and modular track architectures.</p>
+              </div>
+              <div class="timeline-item">
+                <h4>Bio-Material Compatibility</h4>
+                <p>Launched Bio-M compatible system range, enabling clients in sustainable packaging to use Packlink solutions.</p>
+              </div>
+              <div class="timeline-item">
+                <h4>Today — Scaling Up</h4>
+                <p>Actively growing the team, expanding into new industries, and committed to building something meaningful for the long term.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section bg-light">
+      <div class="container">
+        <div class="cta-block">
+          <h2>Ready to Work Together?</h2>
+          <p>Whether you have a complex requirement or need a simple consultation, our engineering team is ready to help design the right system for your facility.</p>
+          <a href="contact.html" class="btn btn-primary" style="font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;">
+            Get in Touch
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>PACKLINK</h3>
+        <p>Engineering precision conveyor and material handling systems for food, pharma, and heavy industry.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+917498348817">+91 7498 348 817</a></li>
+          <li><a href="mailto:engineering@packlink.com">engineering@packlink.com</a></li>
+          <li><a href="https://wa.me/917498348817" target="_blank">WhatsApp Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Packlink. All rights reserved.</span>
+      <span>Founded by Digambar Raundal</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>
